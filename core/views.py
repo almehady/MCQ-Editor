@@ -63,7 +63,7 @@ def question_bank(request):
 	question_filter = QuestionBankSearchFilter(request.GET, queryset=QuestionBank.objects.all())
 	questions = question_filter.qs
 	# questions = QuestionBank.objects.all().filter(status__in=['P', 'C'])
-	paginator = Paginator(questions, 50)
+	paginator = Paginator(questions, 25)
 	page_number = request.GET.get('page')
 	page_obj = paginator.get_page(page_number)
 	return render(request, 'core/question_bank.html', {'page_obj': page_obj, 'question_filter': question_filter})
