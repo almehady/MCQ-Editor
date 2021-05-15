@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'core',
     'import_export',
     'tinymce',
+    'crispy_forms',
 ]
 
 MIDDLEWARE = [
@@ -152,3 +153,7 @@ TINYMCE_DEFAULT_CONFIG = {
     'menubar': True,
     'statusbar': True,
 }
+
+# LOGIN_REDIRECT_URL = '/index/'
+
+CRISPY_TEMPLATE_PACK = 'bootstrap4'
