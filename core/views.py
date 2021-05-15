@@ -10,6 +10,7 @@ from django.contrib.auth.forms import UserCreationForm
 from .forms import CreateUserForm, QuestionBankForm
 from django.core.paginator import Paginator
 from .models import Subject, QuestionBank
+from .filters import QuestionBankSearchFilter
 
 # Create your views here.
 
@@ -48,13 +49,24 @@ def logout_view(request):
     # Redirect to a success page.
 
 
+# trips_filter = TripSearchFilter(request.GET, queryset=Trip.objects.all())
+# 	trips = trips_filter.qs
+# 	paginator = Paginator(trips, 20)
+# 	page_number = request.GET.get('page')
+# 	page_obj = paginator.get_page(page_number)
+# 	count_trips = trips.count()
+# 	context = {'trips': trips, 'trips_filter': trips_filter, 'count_trips': count_trips}
+# 	return render(request, 'trips.html', {'page_obj': page_obj, 'trips_filter': trips_filter, 'count_trips': count_trips})
+#
 @login_required(login_url='/login')
 def question_bank(request):
-	questions = QuestionBank.objects.all().filter(status__in=['P', 'C'])
+	question_filter = QuestionBankSearchFilter(request.GET, queryset=QuestionBank.objects.all())
+	questions = question_filter.qs
+	# questions = QuestionBank.objects.all().filter(status__in=['P', 'C'])
 	paginator = Paginator(questions, 50)
 	page_number = request.GET.get('page')
 	page_obj = paginator.get_page(page_number)
-	return render(request, 'core/question_bank.html', {'page_obj': page_obj})
+	return render(request, 'core/question_bank.html', {'page_obj': page_obj, 'question_filter': question_filter})
 
 
 @login_required(login_url='/login')
