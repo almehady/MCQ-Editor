@@ -58,7 +58,10 @@
                                     <tbody>
                                     {% for q in page_obj %}
                                         <tr>
-                                            <td>{{ q.id }}</td>
+                                            <td>{{ q.id }} <br>
+                                            <a href="{% url 'core:update-question' q.id %}" onclick="window.open(this.href, 'mywin',
+'left=100,top=20,width=500,height=500,toolbar=1,resizable=1'); return false;" ><i class="fas fa-edit"></i></a>
+                                            </td>
                                             <td>{{ q.question|safe }}</td>
                                             <td>{{ q.option_1|safe }}</td>
                                             <td>{{ q.option_2|safe }}</td>
@@ -70,7 +73,6 @@
                                             <td>{{ q.sub_subject }}</td>
                                             <td><a href="{% url 'core:update-question' q.id %}" onclick="window.open(this.href, 'mywin',
 'left=100,top=20,width=500,height=500,toolbar=1,resizable=1'); return false;" ><i class="fas fa-edit"></i></a></td>
-<!--                                            <td><a href="{% url 'core:update-question' q.id %}"><i class="fas fa-edit"></i></a></td>-->
                                         </tr>
                                     {% endfor %}
 

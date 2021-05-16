@@ -15,4 +15,4 @@ class CreateUserForm(UserCreationForm):
 class QuestionBankForm(ModelForm):
 	class Meta:
 		model = QuestionBank
-		fields = ['question', 'option_1', 'option_2', 'option_3', 'option_4', 'option_5', 'correct_answer', 'explanation', 'hints', 'subject', 'sub_subject', 'other_exam']
+		fields = ['question', 'option_1', 'option_2', 'option_3', 'option_4', 'option_5', 'correct_answer', 'explanation', 'hints', 'subject', 'sub_subject', 'other_exam', 'status']
