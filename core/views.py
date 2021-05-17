@@ -7,7 +7,7 @@ from django.contrib.auth.decorators import login_required
 from django.views.generic import TemplateView
 from django.contrib import messages
 from django.contrib.auth.forms import UserCreationForm
-from .forms import CreateUserForm, QuestionBankForm
+from .forms import CreateUserForm, QuestionBankForm, AddModelTestForm
 from django.core.paginator import Paginator
 from .models import Subject, QuestionBank
 from .filters import QuestionBankSearchFilter
@@ -37,7 +37,8 @@ def login_page(request):
 def index(request):
 	total_subjects = Subject.objects.all().count()
 	total_questions = QuestionBank.objects.all().count()
-	context = {'total_subjects':total_subjects, 'total_questions': total_questions}
+	total_model_test_question = QuestionBank.objects.all().filter(add_model_test=True).count()
+	context = {'total_subjects':total_subjects, 'total_questions': total_questions, 'total_model_test_question': total_model_test_question}
 	return render(request, 'core/index.html', context)
 
 
@@ -60,7 +61,7 @@ def logout_view(request):
 #
 @login_required(login_url='/login')
 def question_bank(request):
-	question_filter = QuestionBankSearchFilter(request.GET, queryset=QuestionBank.objects.all())
+	question_filter = QuestionBankSearchFilter(request.GET, queryset=QuestionBank.objects.all().filter(add_model_test=False))
 	questions = question_filter.qs
 	# questions = QuestionBank.objects.all().filter(status__in=['P', 'C'])
 	paginator = Paginator(questions, 25)
@@ -70,18 +71,44 @@ def question_bank(request):
 
 
 @login_required(login_url='/login')
+def model_test(request):
+	question_filter = QuestionBankSearchFilter(request.GET, queryset=QuestionBank.objects.all().filter(add_model_test=True))
+	questions = question_filter.qs
+	filterer_question_count = questions.count()
+	# questions = QuestionBank.objects.all().filter(status__in=['P', 'C'])
+	paginator = Paginator(questions, 25)
+	page_number = request.GET.get('page')
+	page_obj = paginator.get_page(page_number)
+	return render(request, 'core/model_test.html', {'page_obj': page_obj, 'question_filter': question_filter, 'filterer_question_count': filterer_question_count})
+
+
+@login_required(login_url='/login')
 def update_question_bank(request, pk):
 	question = QuestionBank.objects.get(id=pk)
 	form = QuestionBankForm(instance=question)
 
 	if request.method == 'POST':
-		form = QuestionBankForm(request.POST, instance=question)
+		form = QuestionBankForm(request.POST, request.FILES, instance=question)
 		if form.is_valid():
 			form.save()
 			return redirect('/close')
 
 	context = {'form':form}
 	return render(request, 'core/question_bank_update.html', context)
+
+
+@login_required(login_url='/login')
+def update_add_model_test(request, pk):
+	question = QuestionBank.objects.get(id=pk)
+	form = AddModelTestForm(instance=question)
+
+	if request.method == 'POST':
+		form = AddModelTestForm(request.POST, instance=question)
+		if form.is_valid():
+			form.save()
+			return redirect('/close')
+	context = {'form':form}
+	return render(request, 'core/add_to_model_test.html', context)
 
 
 class ClosePageView(TemplateView):

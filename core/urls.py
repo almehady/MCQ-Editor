@@ -13,6 +13,8 @@ urlpatterns = [
     path('logout/', views.logout_view, name='logout'),
     path('questions/', views.question_bank, name='questions'),
     path('question-update/<str:pk>/', views.update_question_bank, name='update-question'),
+    path('model-test/', views.model_test, name='model-test'),
+    path('add-to-model-test/<str:pk>/', views.update_add_model_test, name='add-model-test'),
     path('close/', ClosePageView.as_view(), name='close'),
 
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

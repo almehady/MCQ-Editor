@@ -9,13 +9,14 @@ from import_export.admin import ImportExportModelAdmin
 class QuestionBankResource(resources.ModelResource):
     class Meta:
         model = QuestionBank
+        fields = ('question', 'option_1', 'option_2', 'option_3', 'option_4', 'option_5', 'correct_answer', 'explanation', 'hints', 'subject', 'sub_subject', 'other_exam',)
 
 
 class QuestionBankAdmin(ImportExportModelAdmin):
     resource_class = QuestionBankResource
-    list_display = ('question', 'option_1', 'option_2', 'option_3', 'option_4', 'subject')
+    list_display = ('question', 'option_1', 'option_2', 'option_3', 'option_4', 'subject', 'add_model_test')
     search_fields = ('question', 'subject')
-    list_filter = ('subject',)
+    list_filter = ('subject', 'add_model_test')
 
 
 class SubjectAdmin(admin.ModelAdmin):
