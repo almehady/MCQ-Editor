@@ -80,7 +80,11 @@
                                             <td>{{ q.subject }}</td>
                                             <td>{{ q.sub_subject }}</td>
                                             <td><a href="{% url 'core:update-question' q.id %}" onclick="window.open(this.href, 'mywin',
-'left=100,top=20,width=500,height=500,toolbar=1,resizable=1'); return false;" ><i class="fas fa-edit"></i></a></td>
+'left=100,top=20,width=500,height=500,toolbar=1,resizable=1'); return false;" ><i class="fas fa-edit"></i></a>
+                                                 <a href="{% url 'core:add-model-test' q.id %}" onclick="window.open(this.href, 'mywin',
+'left=100,top=20,width=500,height=500,toolbar=1,resizable=1'); return false;" ><i class="fas fa-star"></i></a>
+
+                                            </td>
                                         </tr>
                                     {% endfor %}
 
