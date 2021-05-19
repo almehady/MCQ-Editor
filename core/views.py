@@ -7,13 +7,12 @@ from django.contrib.auth.decorators import login_required
 from django.views.generic import TemplateView
 from django.contrib import messages
 from django.contrib.auth.forms import UserCreationForm
-from .forms import CreateUserForm, QuestionBankForm, AddModelTestForm
+from .forms import CreateUserForm, QuestionBankForm, AddModelTestForm, ModelTestForm
 from django.core.paginator import Paginator
-from .models import Subject, QuestionBank
-from .filters import QuestionBankSearchFilter
+from .models import Subject, QuestionBank, ModelTest
+from .filters import QuestionBankSearchFilter, ModelTestQuestionSearchFilter
 
 # Create your views here.
-
 
 def login_page(request):
 	if request.user.is_authenticated:
@@ -75,15 +74,15 @@ def question_bank(request):
 
 
 @login_required(login_url='/login')
-def model_test(request):
-	question_filter = QuestionBankSearchFilter(request.GET, queryset=QuestionBank.objects.all().filter(add_model_test=True))
+def model_test_question(request):
+	question_filter = ModelTestQuestionSearchFilter(request.GET, queryset=QuestionBank.objects.all().filter(add_model_test=True))
 	questions = question_filter.qs
 	filterer_question_count = questions.count()
 	# questions = QuestionBank.objects.all().filter(status__in=['P', 'C'])
 	paginator = Paginator(questions, 25)
 	page_number = request.GET.get('page')
 	page_obj = paginator.get_page(page_number)
-	return render(request, 'core/model_test.html', {'page_obj': page_obj, 'question_filter': question_filter, 'filterer_question_count': filterer_question_count})
+	return render(request, 'core/model_test_questions.html', {'page_obj': page_obj, 'question_filter': question_filter, 'filterer_question_count': filterer_question_count})
 
 
 @login_required(login_url='/login')
@@ -102,7 +101,7 @@ def update_question_bank(request, pk):
 
 
 @login_required(login_url='/login')
-def update_add_model_test(request, pk):
+def update_model_test_question(request, pk):
 	question = QuestionBank.objects.get(id=pk)
 	form = AddModelTestForm(instance=question)
 
@@ -112,11 +111,43 @@ def update_add_model_test(request, pk):
 			form.save()
 			return redirect('/close')
 	context = {'form':form}
-	return render(request, 'core/add_to_model_test.html', context)
+	return render(request, 'core/add_to_model_test_question.html', context)
 
 
 class ClosePageView(TemplateView):
     template_name = "core/blank.html"
+
+
+@login_required(login_url='/login')
+def add_model_test(request):
+	context = {}
+
+	# create object of form
+	form = ModelTestForm(request.POST or None,)
+
+	# check if form data is valid
+	if form.is_valid():
+		# save the form data to model
+		form.save()
+
+	# context['form'] = form
+	all_model_test = ModelTest.objects.all()
+	context = {'form': form, 'all_model_test': all_model_test}
+	return render(request, "core/model_test_add.html", context)
+
+
+@login_required(login_url='/login')
+def update_model_test(request, pk):
+	question = ModelTest.objects.get(id=pk)
+	form = ModelTestForm(instance=question)
+
+	if request.method == 'POST':
+		form = ModelTestForm(request.POST, instance=question)
+		if form.is_valid():
+			form.save()
+			return redirect('/model-test-add')
+	context = {'form':form}
+	return render(request, 'core/model_test_update.html', context)
 
 
 

@@ -1,6 +1,6 @@
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
-from .models import QuestionBank
+from .models import QuestionBank, ModelTest
 from django.forms import ModelForm
 from django import forms
 from tinymce.widgets import TinyMCE
@@ -19,6 +19,13 @@ class QuestionBankForm(ModelForm):
 
 
 class AddModelTestForm(ModelForm):
+	add_model_test = forms.BooleanField(label='Are you sure?', required = False)
 	class Meta:
 		model = QuestionBank
-		fields = ['add_model_test']
+		fields = ['model_test', 'add_model_test']
+
+
+class ModelTestForm(ModelForm):
+	class Meta:
+		model = ModelTest
+		fields = ['title', 'status']

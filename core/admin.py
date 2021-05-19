@@ -1,7 +1,7 @@
 from django.contrib import admin
 
 # Register your models here.
-from .models import QuestionBank, Subject
+from .models import QuestionBank, Subject, ModelTest
 from import_export import resources
 from import_export.admin import ImportExportModelAdmin
 
@@ -16,7 +16,7 @@ class QuestionBankAdmin(ImportExportModelAdmin):
     resource_class = QuestionBankResource
     list_display = ('question', 'option_1', 'option_2', 'option_3', 'option_4', 'subject', 'add_model_test')
     search_fields = ('question', 'subject')
-    list_filter = ('subject', 'add_model_test')
+    list_filter = ('subject', 'add_model_test', 'model_test')
 
 
 class SubjectAdmin(admin.ModelAdmin):
@@ -27,3 +27,4 @@ admin.site.site_title = 'MCQ Editor'
 admin.site.site_header = 'MCQ Editor'
 admin.site.register(QuestionBank, QuestionBankAdmin)
 admin.site.register(Subject, SubjectAdmin)
+admin.site.register(ModelTest)

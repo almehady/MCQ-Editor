@@ -10,9 +10,30 @@ QUESTION_STATUS = (
     ('N', 'Need to Modify')
 )
 
+CHECK_STATUS = (
+    ('D', 'Draft'),
+    ('P', 'Published'),
+)
+
 
 class Subject(models.Model):
     title = models.CharField(max_length=200)
+    created = models.DateTimeField(auto_now_add=True)
+    updated = models.DateTimeField(auto_now=True)
+
+    class Meta:
+        ordering = ['-created']
+
+    def __unicode__(self):
+        return self.title
+
+    def __str__(self):
+        return self.title
+
+
+class ModelTest(models.Model):
+    title = models.CharField(max_length=200)
+    status = models.CharField(choices=CHECK_STATUS, max_length=1, default='P')
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
 
@@ -39,8 +60,9 @@ class QuestionBank(models.Model):
     hints = HTMLField(blank=True, null=True)
     subject = models.ForeignKey(Subject, on_delete=models.CASCADE, blank=True, null=True)
     sub_subject = models.CharField(max_length=450, blank=True, null=True)
-    other_exam = models.CharField(max_length=500, blank=True, null=True, help_text='write the exam name here')
+    other_exam = models.CharField(max_length=500, blank=True, null=True, help_text='write the exam list here')
     status = models.CharField(choices=QUESTION_STATUS, max_length=1, default='P')
+    model_test = models.ForeignKey(ModelTest, on_delete=models.CASCADE, blank=True, null=True)
     add_model_test = models.BooleanField(default=False, blank=True, null=True)
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)

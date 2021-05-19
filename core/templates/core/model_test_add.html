@@ -1,0 +1,60 @@
+{% extends 'core/base.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+
+{% block title %}     <title>Add model test | MCQ Editor</title> {% endblock %}
+{% block content %}
+    <div id="wrapper">
+                <!-- Begin Page Content -->
+                <div class="container-fluid">
+            <div class="col-lg-12">
+			<form action="" method="POST">
+				{% csrf_token %}
+				{{form|crispy}}
+				<input type="submit" name="Submit" class="btn btn-primary">
+			</form>
+            </div>
+                    <!-- DataTales Example -->
+                    <div class="card shadow mb-4">
+                        <div class="card-header py-3">
+                            <h6 class="m-0 font-weight-bold text-primary">Model Test List</h6>
+                        </div>
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                                    <thead>
+                                        <tr>
+                                            <th>Title</th>
+                                            <th>Status</th>
+                                            <th>Action</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                    {% for m in all_model_test %}
+                                        <tr>
+                                            <td>{{ m.title }}</td>
+                                            {% if m.status == 'P' %}
+                                            <td>Published</td>
+                                            {% else %}
+                                            <td>Draft</td>
+                                            {% endif %}
+
+                                            <td><a href="{% url 'core:model-test-update' m.id %}"><i class="fas fa-edit"></i></a>
+
+                                            </td>
+                                        </tr>
+                                    {% endfor %}
+
+                                    </tbody>
+                                </table>
+
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <!-- /.container-fluid -->
+
+            </div>
+
+{% endblock %}
