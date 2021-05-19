@@ -25,7 +25,7 @@ SECRET_KEY = 'ap^a%$+u0%1@gef^&5$e5j-9x*gtoeq8zl9e=ab&)&ksmrzgr)'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['165.22.196.82', 'editor.ebook.com.bd']
 
 
 # Application definition
