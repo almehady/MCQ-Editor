@@ -25,7 +25,7 @@ SECRET_KEY = 'ap^a%$+u0%1@gef^&5$e5j-9x*gtoeq8zl9e=ab&)&ksmrzgr)'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['165.22.196.82', 'editor.ebook.com.bd']
+ALLOWED_HOSTS = ['165.22.196.82', 'editor.ebook.com.bd', '127.0.0.1']
 
 
 # Application definition
@@ -79,18 +79,18 @@ WSGI_APPLICATION = 'mcq_editor.wsgi.application'
 # https://docs.djangoproject.com/en/3.0/ref/settings/#databases
 
 DATABASES = {
-    # 'default': {
-    #     'ENGINE': 'django.db.backends.sqlite3',
-    #     'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-    # }
     'default': {
-            'ENGINE': 'django.db.backends.postgresql',
-            'NAME': 'mcq_editor',
-            'USER': 'mcq_editor_user',
-            'PASSWORD': 'dhAk10eBo0k',
-            'HOST': '127.0.0.1',
-            'PORT': '5432',
-        }
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+    }
+    # 'default': {
+    #         'ENGINE': 'django.db.backends.postgresql',
+    #         'NAME': 'mcq_editor',
+    #         'USER': 'mcq_editor_user',
+    #         'PASSWORD': 'dhAk10eBo0k',
+    #         'HOST': '127.0.0.1',
+    #         'PORT': '5432',
+    #     }
 }
 
 

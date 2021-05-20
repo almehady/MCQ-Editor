@@ -9,7 +9,7 @@ from import_export.admin import ImportExportModelAdmin
 class QuestionBankResource(resources.ModelResource):
     class Meta:
         model = QuestionBank
-        fields = ('question', 'option_1', 'option_2', 'option_3', 'option_4', 'option_5', 'correct_answer', 'explanation', 'hints', 'subject', 'sub_subject', 'other_exam',)
+        fields = ('id', 'question', 'option_1', 'option_2', 'option_3', 'option_4', 'option_5', 'correct_answer', 'explanation', 'hints', 'subject', 'sub_subject', 'other_exam',)
 
 
 class QuestionBankAdmin(ImportExportModelAdmin):
