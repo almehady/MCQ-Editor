@@ -166,3 +166,6 @@ TINYMCE_DEFAULT_CONFIG = {
 # LOGIN_REDIRECT_URL = '/index/'
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
+
+# TinyMCE Mathjax plugin
+# https://github.com/dimakorotkov/tinymce-mathjax
