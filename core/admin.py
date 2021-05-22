@@ -9,7 +9,18 @@ from import_export.admin import ImportExportModelAdmin
 class QuestionBankResource(resources.ModelResource):
     class Meta:
         model = QuestionBank
-        fields = ('id', 'question', 'option_1', 'option_2', 'option_3', 'option_4', 'option_5', 'correct_answer', 'explanation', 'hints', 'subject', 'sub_subject', 'other_exam',)
+        fields = ('question', 'option_1', 'option_2', 'option_3', 'option_4', 'option_5', 'correct_answer', 'explanation', 'hints', 'subject', 'sub_subject', 'other_exam',)
+        # import_id_fields = ['question', ]
+
+    def get_instance(self, instance_loader, row):
+        try:
+            params = {}
+            for key in instance_loader.resource.get_import_id_fields():
+                field = instance_loader.resource.fields[key]
+                params[field.attribute] = field.clean(row)
+            return self.get_queryset().get(**params)
+        except Exception:
+            return None
 
 
 class QuestionBankAdmin(ImportExportModelAdmin):
