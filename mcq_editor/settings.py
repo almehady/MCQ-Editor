@@ -141,7 +141,7 @@ TINYMCE_DEFAULT_CONFIG = {
     'cleanup_on_startup': True,
     'custom_undo_redo_levels': 20,
     'selector': 'textarea',
-    # 'theme': 'silver',
+    'theme': 'silver',
     'external_plugins': {'mathjax': 'https://editor.ebook.com.bd/static/mathjax/plugin.min.js'},
     'mathjax': {
         'lib': 'https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js',
