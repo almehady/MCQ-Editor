@@ -23,7 +23,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = 'ap^a%$+u0%1@gef^&5$e5j-9x*gtoeq8zl9e=ab&)&ksmrzgr)'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ['165.22.196.82', 'editor.ebook.com.bd', '127.0.0.1']
 
@@ -141,7 +141,7 @@ TINYMCE_DEFAULT_CONFIG = {
     'cleanup_on_startup': True,
     'custom_undo_redo_levels': 20,
     'selector': 'textarea',
-    'theme': 'silver',
+    # 'theme': 'silver',
     'external_plugins': {'mathjax': 'https://editor.ebook.com.bd/static/mathjax/plugin.min.js'},
     'mathjax': {
         'lib': 'https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js',
