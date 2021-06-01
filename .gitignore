@@ -2,6 +2,10 @@
 *.log
 *.pot
 *.pyc
+media/.DS_Store
+static/tiny_mce/.DS_Store
+static/.DS_Store
+admin.cpython-38.pyc
 __pycache__/
 local_settings.py
 db.sqlite3
