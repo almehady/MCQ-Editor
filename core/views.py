@@ -50,7 +50,7 @@ def index(request):
 	# total_data = dict(zip(all_sub_list, total_model_question_list))
 	# total_data_unpack = total_data.items()
 
-	context = {'total_subjects':total_subjects, 'total_questions': total_questions, 'total_model_test_question': total_model_test_question, 'total_model_question_list': total_model_question_list, 'total_data_unpack': total_data_unpack}
+	context = {'total_subjects':total_subjects, 'total_questions': total_questions, 'total_model_test_question': total_model_test_question, 'total_model_question_list': total_model_question_list,}
 	return render(request, 'core/index.html', context)
 
 
