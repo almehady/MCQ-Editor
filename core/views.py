@@ -37,18 +37,18 @@ def index(request):
 	total_subjects = Subject.objects.all().count()
 	total_questions = QuestionBank.objects.all().count()
 	total_model_test_question = QuestionBank.objects.all().filter(add_model_test=True).count()
-	subject_id = Subject.objects.all().values_list('pk', flat=True)
-	subjects = Subject.objects.all()
-	all_sub_list = []
-	for sub in subjects:
-		all_sub_list.append(sub)
-	total_model_question_list = []
-	for sub in subject_id:
-		math_model_question = QuestionBank.objects.all().filter(add_model_test=True, subject__id=sub).count()
-		total_model_question_list.append(math_model_question)
-
-	total_data = dict(zip(all_sub_list, total_model_question_list))
-	total_data_unpack = total_data.items()
+	# subject_id = Subject.objects.all().values_list('pk', flat=True)
+	# subjects = Subject.objects.all()
+	# all_sub_list = []
+	# for sub in subjects:
+	# 	all_sub_list.append(sub)
+	# total_model_question_list = []
+	# for sub in subject_id:
+	# 	math_model_question = QuestionBank.objects.all().filter(add_model_test=True, subject__id=sub).count()
+	# 	total_model_question_list.append(math_model_question)
+	#
+	# total_data = dict(zip(all_sub_list, total_model_question_list))
+	# total_data_unpack = total_data.items()
 
 	context = {'total_subjects':total_subjects, 'total_questions': total_questions, 'total_model_test_question': total_model_test_question, 'total_model_question_list': total_model_question_list, 'total_data_unpack': total_data_unpack}
 	return render(request, 'core/index.html', context)
