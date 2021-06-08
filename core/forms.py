@@ -3,7 +3,7 @@ from django.contrib.auth.models import User
 from .models import QuestionBank, ModelTest
 from django.forms import ModelForm
 from django import forms
-from tinymce.widgets import TinyMCE
+from .widgets import MyTextarea, CustomTextArea
 
 
 class CreateUserForm(UserCreationForm):
@@ -13,6 +13,15 @@ class CreateUserForm(UserCreationForm):
 
 
 class QuestionBankForm(ModelForm):
+	question = forms.CharField(widget=CustomTextArea)
+	option_1 = forms.CharField(widget=CustomTextArea)
+	option_2 = forms.CharField(widget=CustomTextArea)
+	option_3 = forms.CharField(widget=CustomTextArea)
+	option_4 = forms.CharField(widget=CustomTextArea)
+	option_5 = forms.CharField(widget=CustomTextArea)
+	correct_answer = forms.CharField(widget=CustomTextArea)
+	explanation = forms.CharField(widget=CustomTextArea)
+	hints = forms.CharField(widget=CustomTextArea)
 	class Meta:
 		model = QuestionBank
 		fields = ['question', 'option_1', 'option_2', 'option_3', 'option_4', 'option_5', 'correct_answer', 'explanation', 'explanation_image', 'hints', 'subject', 'sub_subject', 'other_exam', 'status']

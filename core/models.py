@@ -1,6 +1,5 @@
 from django.db import models
 from django.contrib.auth.models import AbstractUser
-from tinymce.models import HTMLField
 # Create your models here.
 
 QUESTION_STATUS = (
@@ -68,17 +67,17 @@ class QuestionBank(models.Model):
     c2 = models.CharField(max_length=450, blank=True, null=True)
     c3 = models.CharField(max_length=450, blank=True, null=True)
     category = models.ForeignKey(Category, on_delete=models.CASCADE, blank=True, null=True)
-    question = HTMLField(blank=True, null=True)
-    option_1 = HTMLField(blank=True, null=True)
-    option_2 = HTMLField(blank=True, null=True)
-    option_3 = HTMLField(blank=True, null=True)
-    option_4 = HTMLField(blank=True, null=True)
-    option_5 = HTMLField(blank=True, null=True)
-    correct_answer = HTMLField(blank=True, null=True)
-    explanation = HTMLField(blank=True, null=True)
+    question = models.TextField(blank=True, null=True)
+    option_1 = models.TextField(blank=True, null=True)
+    option_2 = models.TextField(blank=True, null=True)
+    option_3 = models.TextField(blank=True, null=True)
+    option_4 = models.TextField(blank=True, null=True)
+    option_5 = models.TextField(blank=True, null=True)
+    correct_answer = models.TextField(blank=True, null=True)
+    explanation = models.TextField(blank=True, null=True)
     explanation_image = models.ImageField(upload_to='explanation/', null=True, blank=True)
-    hints = HTMLField(blank=True, null=True)
-    issue = HTMLField(blank=True, null=True)
+    hints = models.TextField(blank=True, null=True)
+    issue = models.TextField(blank=True, null=True)
     subject = models.CharField(max_length=450, blank=True, null=True)
     sub_subject = models.CharField(max_length=450, blank=True, null=True)
     exam_year = models.CharField(max_length=450, blank=True, null=True)
@@ -90,7 +89,7 @@ class QuestionBank(models.Model):
     updated = models.DateTimeField(auto_now=True)
 
     class Meta:
-        ordering = ['-created']
+        ordering = ['created']
 
     def __unicode__(self):
         return self.question

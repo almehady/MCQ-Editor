@@ -11,11 +11,20 @@
 			<form action="" method="POST" enctype="multipart/form-data">
 				{% csrf_token %}
 				{{form|crispy}}
-				<input type="submit" name="Submit">
+				<input type="submit" name="Submit" class="btn btn-primary">
 			</form>
 
 		</div>
 	</div>
 </div>
 
+<script>
+
+	window.onload = function (){
+		var a = document.getElementById('sidebarToggleTop')
+		a.click()
+	}
+
+</script>
 {% endblock %}
+

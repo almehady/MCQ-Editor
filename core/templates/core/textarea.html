@@ -1,0 +1,27 @@
+{% load static %}
+
+<textarea name="{{ widget.name }}" class="ascii-tinymce">
+{% if widget.value %}{{ widget.value }}{% endif %}</textarea>
+
+<style>
+div#mceu_16 {
+    width: 100% !important;
+}
+</style>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tinymce/4.9.5/tinymce.min.js" integrity="sha512-sQnW5qN+dLteqpWzntpHUxg/yORBRCP5dKqYTfaCFXbSv0/LaSXG/j+1djGRZHNcpiUklpSgqmtt/7W9T6b+LQ==" crossorigin="anonymous"></script>
+<script>
+window.addEventListener('load',
+  function() {
+tinymce.init({
+    selector: 'textarea.ascii-tinymce',
+    external_plugins: {'mathSymbols': '/static/plugin.min.js'},
+    plugins: [
+        'advlist autolink lists link image charmap print preview anchor',
+        'searchreplace visualblocks code fullscreen',
+        'insertdatetime media table paste code help wordcount mathSymbols',
+    ],
+    toolbar: 'mathjax | undo redo | formatselect | bold italic backcolor | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | removeformat | help | mathSymbols'
+});
+  }, false);
+
+</script>

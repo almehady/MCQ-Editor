@@ -39,7 +39,6 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'core',
     'import_export',
-    'tinymce',
     'crispy_forms',
     'django_filters',
 ]
@@ -79,18 +78,18 @@ WSGI_APPLICATION = 'mcq_editor.wsgi.application'
 # https://docs.djangoproject.com/en/3.0/ref/settings/#databases
 
 DATABASES = {
-    # 'default': {
-    #     'ENGINE': 'django.db.backends.sqlite3',
-    #     'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-    # }
     'default': {
-            'ENGINE': 'django.db.backends.postgresql',
-            'NAME': 'mcq_editor',
-            'USER': 'mcq_editor_user',
-            'PASSWORD': 'dhAk10eBo0k',
-            'HOST': '127.0.0.1',
-            'PORT': '5432',
-        }
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+    }
+    # 'default': {
+    #         'ENGINE': 'django.db.backends.postgresql',
+    #         'NAME': 'mcq_editor',
+    #         'USER': 'mcq_editor_user',
+    #         'PASSWORD': 'dhAk10eBo0k',
+    #         'HOST': '127.0.0.1',
+    #         'PORT': '5432',
+    #     }
 }
 
 
@@ -137,31 +136,32 @@ MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
 
 
-TINYMCE_DEFAULT_CONFIG = {
-    'cleanup_on_startup': True,
-    'custom_undo_redo_levels': 20,
-    'selector': 'textarea',
-    'theme': 'silver',
-    'external_plugins': {'mathjax': 'https://editor.ebook.com.bd/static/mathjax/plugin.min.js'},
-    'mathjax': {
-        'lib': 'https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js',
-    },
-    'plugins': '''
-            textcolor save link image media preview codesample contextmenu
-            table code lists fullscreen  insertdatetime  nonbreaking
-            contextmenu directionality searchreplace wordcount visualblocks
-            visualchars code fullscreen autolink lists  charmap print  hr
-            anchor pagebreak mathjax
-            ''',
-    'toolbar1': '''
-            bold italic underline | fontselect,
-            fontsizeselect  | forecolor backcolor | alignleft alignright |
-            aligncenter alignjustify | indent outdent | bullist numlist | code | mathjax
-            ''',
-    'contextmenu': 'formats | link image',
-    'menubar': True,
-    'statusbar': True,
-}
+# TINYMCE_DEFAULT_CONFIG = {
+#     'cleanup_on_startup': True,
+#     'custom_undo_redo_levels': 20,
+#     'selector': 'textarea',
+#     # 'theme': 'silver',
+#     # 'external_plugins': {'mathjax': 'https://editor.ebook.com.bd/static/mathjax/plugin.min.js'},
+#     'external_plugins': {'mathSymbols': '/static/plugin.min.js'},
+#     'mathjax': {
+#         'lib': 'https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js',
+#     },
+#     'plugins': '''
+#             textcolor save link image media preview codesample contextmenu
+#             table code lists fullscreen  insertdatetime  nonbreaking
+#             contextmenu directionality searchreplace wordcount visualblocks
+#             visualchars code fullscreen autolink lists  charmap print  hr
+#             anchor pagebreak mathjax mathSymbols
+#             ''',
+#     'toolbar1': '''
+#             bold italic underline | fontselect,
+#             fontsizeselect  | forecolor backcolor | alignleft alignright |
+#             aligncenter alignjustify | indent outdent | bullist numlist | code | mathjax | mathSymbols
+#             ''',
+#     'contextmenu': 'formats | link image',
+#     'menubar': True,
+#     'statusbar': True,
+# }
 
 # LOGIN_REDIRECT_URL = '/index/'
 

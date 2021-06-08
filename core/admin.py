@@ -4,6 +4,9 @@ from django.contrib import admin
 from .models import QuestionBank, Subject, ModelTest, Category
 from import_export import resources
 from import_export.admin import ImportExportModelAdmin
+from django.forms import ModelForm, Textarea
+from .widgets import MyTextarea
+from django import forms
 
 
 class QuestionBankResource(resources.ModelResource):
@@ -23,11 +26,23 @@ class QuestionBankResource(resources.ModelResource):
             return None
 
 
+class QuestionBankAdminForm(forms.ModelForm):
+    question = forms.CharField(widget=MyTextarea)
+    option_1 = forms.CharField(widget=MyTextarea)
+    option_2 = forms.CharField(widget=MyTextarea)
+    option_3 = forms.CharField(widget=MyTextarea)
+    option_4 = forms.CharField(widget=MyTextarea)
+    option_5 = forms.CharField(widget=MyTextarea)
+    correct_answer = forms.CharField(widget=MyTextarea)
+    explanation = forms.CharField(widget=MyTextarea)
+    hints = forms.CharField(widget=MyTextarea)
+
 class QuestionBankAdmin(ImportExportModelAdmin):
     resource_class = QuestionBankResource
     list_display = ('question', 'option_1', 'option_2', 'option_3', 'option_4', 'subject', 'add_model_test')
     search_fields = ('question', 'subject')
     list_filter = ('subject', 'add_model_test', 'model_test')
+    form = QuestionBankAdminForm
 
 
 class SubjectAdmin(admin.ModelAdmin):
