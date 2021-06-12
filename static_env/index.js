@@ -1,5 +1,5 @@
 tinymce.init({
-    selector: 'textarea#default',
+    selector: 'textarea.ascii-tinymce',
     external_plugins: {'mathSymbols': '/static/plugin.js'},
     plugins: [
         'advlist autolink lists link image charmap print preview anchor',

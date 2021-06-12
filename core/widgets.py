@@ -1,8 +1,9 @@
 from django.forms import Widget
 from django import forms
+from django.forms.widgets import Textarea
 
 
-class MyTextarea(Widget):
+class MyTextarea(Textarea):
     template_name = 'core/textarea.html'
 
     def __init__(self, attrs=None):
