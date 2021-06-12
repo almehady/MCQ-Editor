@@ -1,5 +1,5 @@
 tinymce.init({
-    selector: 'textarea.ascii-tinymce',
+    selector: 'textarea#default',
     external_plugins: {'mathSymbols': '/static/plugin.js'},
     plugins: [
         'advlist autolink lists link image charmap print preview anchor',
@@ -8,5 +8,3 @@ tinymce.init({
     ],
     toolbar: 'mathjax | undo redo | formatselect | bold italic backcolor | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | removeformat | help | mathSymbols'
 });
-
-alert(2)
