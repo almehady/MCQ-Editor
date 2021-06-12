@@ -13,15 +13,15 @@ class CreateUserForm(UserCreationForm):
 
 
 class QuestionBankForm(ModelForm):
-	question = forms.CharField(widget=CustomTextArea)
-	option_1 = forms.CharField(widget=CustomTextArea)
-	option_2 = forms.CharField(widget=CustomTextArea)
-	option_3 = forms.CharField(widget=CustomTextArea)
-	option_4 = forms.CharField(widget=CustomTextArea)
-	option_5 = forms.CharField(widget=CustomTextArea)
-	correct_answer = forms.CharField(widget=CustomTextArea)
-	explanation = forms.CharField(widget=CustomTextArea)
-	hints = forms.CharField(widget=CustomTextArea)
+	question = forms.CharField(widget=CustomTextArea, required=False)
+	option_1 = forms.CharField(widget=CustomTextArea, required=False)
+	option_2 = forms.CharField(widget=CustomTextArea, required=False)
+	option_3 = forms.CharField(widget=CustomTextArea, required=False)
+	option_4 = forms.CharField(widget=CustomTextArea, required=False)
+	option_5 = forms.CharField(widget=CustomTextArea, required=False)
+	correct_answer = forms.CharField(widget=CustomTextArea, required=False)
+	explanation = forms.CharField(widget=CustomTextArea, required=False)
+	hints = forms.CharField(widget=CustomTextArea, required=False)
 	class Meta:
 		model = QuestionBank
 		fields = ['question', 'option_1', 'option_2', 'option_3', 'option_4', 'option_5', 'correct_answer', 'explanation', 'explanation_image', 'hints', 'subject', 'sub_subject', 'other_exam', 'status']

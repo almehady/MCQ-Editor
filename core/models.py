@@ -1,5 +1,15 @@
 from django.db import models
 from django.contrib.auth.models import AbstractUser
+from django.db.models.signals import post_save, pre_save
+from django.dispatch import receiver
+import re
+from py_asciimath.translator.translator import (
+    ASCIIMath2MathML,
+    ASCIIMath2Tex,
+    MathML2Tex,
+    Tex2ASCIIMath
+)
+
 # Create your models here.
 
 QUESTION_STATUS = (
@@ -96,4 +106,5 @@ class QuestionBank(models.Model):
 
     def __str__(self):
         return self.question
+
 
