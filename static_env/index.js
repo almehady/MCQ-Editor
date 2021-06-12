@@ -1,6 +1,6 @@
 tinymce.init({
-    selector: 'textarea.ascii-tinymce',
-    external_plugins: {'mathSymbols': '/static/plugin.min.js'},
+    selector: 'textarea#default',
+    external_plugins: {'mathSymbols': '/static/plugin.js'},
     plugins: [
         'advlist autolink lists link image charmap print preview anchor',
         'searchreplace visualblocks code fullscreen',
